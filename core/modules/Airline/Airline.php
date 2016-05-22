@@ -8,7 +8,7 @@ class Airline extends CodonModule
         $this->set('airlines', OperationsData::getAllAirlines());
 		$this->set('userinfo', PilotData::getAllPilots());
 		$this->set('$pireps', PIREPData::GetAllReportsForPilot(Auth::$userinfo->pilotid));
-        $this->show('/pireplist/airline_select.tpl');
+        $this->show('/pireplist/airline_select.php');
 	}
 	
 	public function result() 
@@ -16,7 +16,7 @@ class Airline extends CodonModule
 		$this->set('userinfo', Auth::$userinfo);
 		$this->set('pireps', PIREPData::GetAllReportsForPilot(Auth::$userinfo->pilotid));
 		$this->set('airlines', OperationsData::getAllAirlines());
-		$this->show('/pireplist/list_pireps.tpl');
+		$this->show('/pireplist/list_pireps.php');
 	}
 }
 ?>
