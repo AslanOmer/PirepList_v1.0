@@ -5,11 +5,21 @@ class Airline extends CodonModule
 	
 	public function index() 
 	{
-        $this->set('airlines', OperationsData::getAllAirlines());
-		$this->set('userinfo', PilotData::getAllPilots());
-		$this->set('$pireps', PIREPData::GetAllReportsForPilot(Auth::$userinfo->pilotid));
-        $this->show('/pireplist/airline_select.php');
+		$revision = trim(file_get_contents(CORE_PATH.'/version'));
+			if($revision != 'simpilot 5.5.2')
+				{
+					echo '<center>phpVMS Version Installed Is Not Compatible With This Module!</center><br />';
+					echo '<center>phpVMS Version Installed: '.$revision.'</center>';
+				}
+			else
+			{
+				$this->set('airlines', OperationsData::getAllAirlines());
+				$this->set('userinfo', PilotData::getAllPilots());
+				$this->set('$pireps', PIREPData::GetAllReportsForPilot(Auth::$userinfo->pilotid));
+				$this->show('/pireplist/airline_select.php');
+			}
 	}
+	
 	
 	public function result() 
 	{
